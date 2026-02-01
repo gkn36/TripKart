@@ -32,7 +32,7 @@ export const createBooking = async (req, res) => {
         .json({ success: false, message: "Missing required fields" });
     }
 
-    const newBooking = new bookingModel({
+    const bookingData = {
       userId,
       name,
       email,
@@ -43,9 +43,9 @@ export const createBooking = async (req, res) => {
       tourTitle,
       totalPrice: parseFloat(totalPrice),
       status: "confirmed",
-    });
+    };
 
-    const savedBooking = await newBooking.save();
+    const savedBooking = await bookingModel.create(bookingData);
 
     res.status(201).json({
       success: true,
@@ -65,9 +65,7 @@ export const getBookings = async (req, res) => {
   try {
     const userId = req.userId;
 
-    const bookings = await bookingModel
-      .find({ userId })
-      .sort({ createdAt: -1 });
+    const bookings = await bookingModel.findByUserId(userId);
 
     res.status(200).json({ success: true, bookings });
   } catch (error) {

@@ -25,7 +25,7 @@ const AllTours = () => {
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.6, duration: 0.8 }}
       >
-        Unforgettable Journeys Tailored to Your Interests. Explore the world in
+        Unforgettable Journeys Tailored to Your Interests. Explore the India in
         the most beautiful and luxurious ways possible.
       </motion.p>
       <TourList />

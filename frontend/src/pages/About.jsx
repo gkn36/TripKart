@@ -1,6 +1,13 @@
 import React from "react";
 import { Mail, Phone, MapPin } from "lucide-react";
 import { motion } from "framer-motion";
+import harshit from "./Harshit.jpeg";
+import harsh from "./Harsh.jpeg";
+import shashi from "./Shashii.jpeg";
+import akshay from "./gourav.jpg";
+
+
+
 
 const fadeIn = {
   hidden: { opacity: 0 },
@@ -24,7 +31,7 @@ const About = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
         >
-          Welcome to <span className="text-blue-400">TripGo</span>
+          Welcome to <span className="text-blue-400">TripKart</span>
         </motion.h1>
         <motion.p
           className="text-white mt-4 text-lg relative z-10"
@@ -49,7 +56,7 @@ const About = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.3, duration: 0.6 }}
           >
-            About <span className="text-blue-500">TripGo</span>
+            About <span className="text-blue-500">TripKart</span>
           </motion.h2>
           <motion.p
             className="text-lg"
@@ -57,10 +64,7 @@ const About = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.5, duration: 0.8 }}
           >
-            TripGo is a leading travel agency offering personalized booking
-            experiences to help travelers plan their perfect vacation. With a
-            wide range of tours, activities, and accommodations, we make your
-            travel dreams come true.
+            Roamory is a smart travel booking web application designed to simplify trip planning and management. It allows users to explore destinations, compare prices, and book trips through a clean, responsive interface. With dedicated user and admin panels, Roamory supports booking management, destination control, and scalable real-world travel features.
           </motion.p>
         </motion.div>
       </section>
@@ -87,7 +91,7 @@ const About = () => {
             transition={{ delay: 0.5, duration: 0.8 }}
           >
             Our mission is to provide seamless, reliable, and hassle-free travel
-            booking services that empower our customers to explore the world
+            booking services that empower our customers to explore India
             with ease. We strive to offer exceptional customer service and the
             best travel deals.
           </motion.p>
@@ -167,33 +171,43 @@ const About = () => {
             unforgettable. We are experts in travel planning and passionate
             about helping you discover the best destinations.
           </p>
-          <div className="flex flex-wrap justify-center gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl mx-auto">
             {[
               {
-                img: "https://img.freepik.com/free-photo/smiling-young-travel-agent-holding-travel-book-while-working-office_1150-18351.jpg?w=1380&t=st=1689822301~exp=1689822901~hmac=fd79c254f2a30fc1ad4fa28cc5e225e99f4232f9db184e00d5e20b27ff51d426",
-                name: "Jane Doe",
+                img: harsh,
+                name: "Harsh Kumar",
                 title: "Travel Consultant",
               },
               {
-                img: "https://img.freepik.com/free-photo/cheerful-young-tourist-student-smiling-camera-outdoor_1150-18412.jpg?w=1380&t=st=1689822402~exp=1689823002~hmac=6177bbd4170abf3788d0bc6fc9ef62ff1b71c5791ec59001c0d50fa04a4d3e78",
-                name: "John Smith",
+                img: akshay,
+                name: "Gourav Nayak",
                 title: "Travel Specialist",
               },
+              {
+                img:harshit,
+                name: "Kumar Harshit",
+                title: "Travel Consultant",
+              },
+              {
+                img: shashi,
+                name: "Abhishek Shashi",
+                title: "Travel Specialist",
+              }
             ].map((item, index) => (
               <motion.div
                 key={index}
-                className="team-member w-1/3"
+                className="flex flex-col items-center text-center"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.6 + index * 0.3, duration: 0.8 }}
               >
                 <img
-                  className="rounded-full mb-4"
+                  className="w-48 h-48 object-cover rounded-full mb-4 shadow-lg"
                   src={item.img}
                   alt={item.name}
                 />
                 <h3 className="text-xl font-semibold">{item.name}</h3>
-                <p>{item.title}</p>
+                <p className="text-gray-600">{item.title}</p>
               </motion.div>
             ))}
           </div>
@@ -224,17 +238,17 @@ const About = () => {
               {
                 icon: <Mail className="w-8 h-8 mb-4" />,
                 title: "Email",
-                content: "contact@tripgo.com",
+                content: "contact@roamory.com",
               },
               {
                 icon: <Phone className="w-8 h-8 mb-4" />,
                 title: "Phone",
-                content: "+91-9130045670",
+                content: "+91-99999999",
               },
               {
                 icon: <MapPin className="w-8 h-8 mb-4" />,
                 title: "Address",
-                content: "Ghaziabad, India",
+                content: "Bhubaneshwar, India",
               },
             ].map((item, index) => (
               <motion.div
@@ -253,7 +267,7 @@ const About = () => {
           </div>
           <div className="mt-12 text-center">
             <a
-              href="mailto:contact@tripgo.com"
+              href="mailto:contact@roamory.com"
               className="inline-block px-8 py-3 bg-white text-blue-500 rounded-full font-semibold hover:bg-blue-100 transition duration-300"
             >
               Contact Us

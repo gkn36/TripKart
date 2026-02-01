@@ -1,56 +1,43 @@
-import mongoose from "mongoose";
+import { getConnection } from "../config/mongodb.js";
 
-const bookingSchema = new mongoose.Schema({
-  userId: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "User",
-    required: true,
+const bookingModel = {
+  async create(bookingData) {
+    const db = getConnection();
+    const [result] = await db.execute(
+      `INSERT INTO bookings (user_id, name, email, phone, travelers, special_requests, tour_id, tour_title, total_price, status) 
+       VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+      [
+        bookingData.userId,
+        bookingData.name,
+        bookingData.email,
+        bookingData.phone,
+        bookingData.travelers,
+        bookingData.specialRequests || null,
+        bookingData.tourId,
+        bookingData.tourTitle,
+        bookingData.totalPrice,
+        bookingData.status || "pending",
+      ]
+    );
+    return { id: result.insertId, ...bookingData };
   },
-  name: {
-    type: String,
-    required: true,
-  },
-  email: {
-    type: String,
-    required: true,
-  },
-  phone: {
-    type: String,
-    required: true,
-  },
-  travelers: {
-    type: Number,
-    required: true,
-    min: 1,
-  },
-  specialRequests: {
-    type: String,
-  },
-  tourId: {
-    type: String,
-    required: true,
-  },
-  tourTitle: {
-    type: String,
-    required: true,
-  },
-  totalPrice: {
-    type: Number,
-    required: true,
-    min: 0,
-  },
-  status: {
-    type: String,
-    enum: ["pending", "confirmed"],
-    default: "pending",
-  },
-  createdAt: {
-    type: Date,
-    default: Date.now,
-  },
-});
 
-const bookingModel =
-  mongoose.models.booking || mongoose.model("booking", bookingSchema);
+  async findByUserId(userId) {
+    const db = getConnection();
+    const [rows] = await db.execute(
+      "SELECT * FROM bookings WHERE user_id = ? ORDER BY created_at DESC",
+      [userId]
+    );
+    return rows;
+  },
+
+  async findById(id) {
+    const db = getConnection();
+    const [rows] = await db.execute("SELECT * FROM bookings WHERE id = ?", [
+      id,
+    ]);
+    return rows[0] || null;
+  },
+};
 
 export default bookingModel;

@@ -12,15 +12,21 @@ export const registerUser = async (req, res) => {
     if (!name || !email || !password) {
       return res.json({ success: false, message: "All fields are required" });
     }
+
+    // Check if user already exists
+    const existingUser = await userModel.findByEmail(email);
+    if (existingUser) {
+      return res.json({ success: false, message: "User already exists" });
+    }
+
     const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash(password, salt);
     const userData = { name, email, password: hashedPassword };
 
-    const newUser = new userModel(userData);
-    const token = jwt.sign({ id: newUser._id }, process.env.JWT_SECRET);
+    const newUser = await userModel.create(userData);
+    const token = jwt.sign({ id: newUser.id }, process.env.JWT_SECRET);
 
-    const user = await newUser.save();
-    res.json({ success: true, token, user: { name: user.name } });
+    res.json({ success: true, token, user: { name: newUser.name } });
   } catch (error) {
     console.log(error);
     return res.json({ success: false, message: error.message });
@@ -37,13 +43,13 @@ export const loginUser = async (req, res) => {
     if (!email || !password) {
       return res.json({ success: false, message: "All fields are required" });
     }
-    const user = await userModel.findOne({ email });
+    const user = await userModel.findByEmail(email);
     if (!user) {
       return res.json({ success: false, message: "User not found" });
     }
     const isMatch = await bcrypt.compare(password, user.password);
     if (isMatch) {
-      const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET);
+      const token = jwt.sign({ id: user.id }, process.env.JWT_SECRET);
       return res.json({ success: true, token, user: { name: user.name } });
     } else {
       return res.json({ success: false, message: "Invalid credentials" });

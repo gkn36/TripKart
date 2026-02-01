@@ -17,7 +17,7 @@ const Experience = () => {
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.3, duration: 0.8 }}
       >
-        Experience our <span className="text-blue-500">TripGo</span>
+        Experience our <span className="text-blue-500">TripKart</span>
       </motion.h1>
       <motion.p
         className="text-lg text-gray-600 mb-12 text-center max-w-2xl mx-auto"
@@ -37,7 +37,7 @@ const Experience = () => {
           transition={{ duration: 0.8 }}
         >
           <TrendingUp className="text-blue-500 mb-4 text-4xl" />
-          <span className="text-2xl font-semibold text-gray-800">12k+</span>
+          <span className="text-2xl font-semibold text-gray-800">2k+</span>
           <h6 className="text-lg text-gray-600">Successful Trips</h6>
         </motion.div>
 
@@ -48,7 +48,7 @@ const Experience = () => {
           transition={{ duration: 0.8 }}
         >
           <UserCheck className="text-green-500 mb-4 text-4xl" />
-          <span className="text-2xl font-semibold text-gray-800">2k+</span>
+          <span className="text-2xl font-semibold text-gray-800">500+</span>
           <h6 className="text-lg text-gray-600">Regular Clients</h6>
         </motion.div>
 
@@ -59,7 +59,7 @@ const Experience = () => {
           transition={{ duration: 0.8 }}
         >
           <Award className="text-yellow-500 mb-4 text-4xl" />
-          <span className="text-2xl font-semibold text-gray-800">10k+</span>
+          <span className="text-2xl font-semibold text-gray-800">1k+</span>
           <h6 className="text-lg text-gray-600">Experience</h6>
         </motion.div>
       </div>
