@@ -17,7 +17,7 @@ Roamory offers an easy-to-use platform where customers can:
      - Price
      - Available Dates
      - Images
-   - Data is fetched from a MongoDB collection to dynamically display the available packages.
+   - Data is fetched from a MySQL database to dynamically display the available packages.
 
 2. **Package Booking:**
    - Each package has a 'Book Now' button.
@@ -27,7 +27,7 @@ Roamory offers an easy-to-use platform where customers can:
      - Phone Number
      - Number of travelers
      - Special requests 
-   - After the customer fills in their details, the booking is saved to MongoDB.
+   - After the customer fills in their details, the booking is saved to MySQL.
 
 3. **Invoice Generation:**
    - After booking, the system generates a basic invoice which includes:
@@ -45,4 +45,4 @@ Roamory offers an easy-to-use platform where customers can:
   - Express.js
 
 - **Database:**
-  - MongoDB (for storing package and booking details)
+  - MySQL (for storing package and booking details)
