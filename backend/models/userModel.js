@@ -1,4 +1,4 @@
-import { getConnection } from "../config/mongodb.js";
+import { getConnection } from "../config/mysql.js";
 
 const userModel = {
   async create(userData) {
